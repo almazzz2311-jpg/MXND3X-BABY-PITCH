@@ -14,6 +14,8 @@ Release VST3 собран для **Windows x64** и **Linux x86_64**. Это о�
 
 Проверка непосредственно в FL Studio пока не выполнялась.
 
+Окончательная сборка с проверкой Windows GUI: [GitHub Actions](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40545039800), commit `1cf024cb219c0bc64a282047d175977770e81750`. Успешны сборка, оба CTest-теста и `PluginTests --gui-desktop`: восемь циклов создания, resize, рендеринга и закрытия нативного редактора Windows. Снимок `interface.png` включён в [итоговый архив Windows](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40545039800/artifacts/12753041811) размером 4 482 934 байта. SHA-256 DLL итоговой сборки: `ad2f83e58d6a73097eb11af725f3e42aa60eb00252adb8cad4a118f4568a8dc7`.
+
 ## Linux: подтверждённая сборка
 
 Полный `bash Scripts/setup_cloud.sh` выполнен успешно; повторный запуск использует подготовленные зависимости и проверенные выходы сборки. Итоговый CTest: **3/3 passed, 0 failed**. Установочные пакеты распакованы локально без изменения системных каталогов; проверка подписей APT и TLS не отключалась.
@@ -25,6 +27,7 @@ Release VST3 собран для **Windows x64** и **Linux x86_64**. Это о�
 | VST3Smoke | Passed |
 | GUI: создание, размер, рендер и уничтожение редактора ×8 | Passed |
 | X11: открытие/закрытие нативных окон ×8, Xvfb + Openbox | Passed |
+| Windows: открытие/закрытие нативных окон ×8 и снимок GUI | Passed |
 | Обработка записи речи всеми шестью пресетами | Passed |
 | Windows/MSVC Release x64 | Passed, DSPTests + PluginTests: 2/2 |
 | FL Studio: сканирование, playback, автоматизация, сохранение проекта DAW | Не выполнялись |

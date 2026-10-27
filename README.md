@@ -4,7 +4,7 @@
 
 ## Готовый плагин для Windows
 
-[Скачать Windows x64 VST3](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40544160434/artifacts/12752856135). Для скачивания артефакта требуется вход в GitHub. Распакуйте ZIP и установите целиком папку `MXND3X BABY VOICE.vst3` по инструкции ниже. Самостоятельная компиляция для установки этого архива не нужна.
+[Скачать Windows x64 VST3](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40545039800/artifacts/12753041811). Для скачивания артефакта требуется вход в GitHub. Распакуйте ZIP и установите целиком папку `MXND3X BABY VOICE.vst3` по инструкции ниже. Самостоятельная компиляция для установки этого архива не нужна.
 
 ## Windows 10/11 x64: сборка
 
