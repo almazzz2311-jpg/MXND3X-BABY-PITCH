@@ -3,11 +3,18 @@ on: [push, pull_request, workflow_dispatch]
 jobs:
   build:
     runs-on: windows-2022
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - name: Build and test Windows x64 VST3
         shell: cmd
         run: build_windows.bat
+      - name: Open and render Windows editor
+        shell: cmd
+        run: |
+          build-windows\PluginTests_artefacts\Release\PluginTests.exe --gui-desktop
+          if errorlevel 1 exit /b 1
+          copy /y interface.png dist\interface.png
       - uses: actions/upload-artifact@v4
         with:
           name: MXND3X-BABY-VOICE-Windows-x64
