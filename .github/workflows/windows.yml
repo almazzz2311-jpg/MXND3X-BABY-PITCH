@@ -1,0 +1,15 @@
+name: Windows VST3
+on: [push, pull_request, workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and test Windows x64 VST3
+        shell: cmd
+        run: build_windows.bat
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MXND3X-BABY-VOICE-Windows-x64
+          path: dist/
+          if-no-files-found: error
