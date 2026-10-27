@@ -1,10 +1,20 @@
 # Фактически выполненные проверки
 
-Дата: 27 октября 2026. Среда: Debian Linux x86_64, GCC 14.2, CMake 4.4.4, JUCE 8.0.12. Windows и FL Studio в этой среде отсутствуют.
+Дата: 27 октября 2026. Среда: Debian Linux x86_64, GCC 14.2, CMake 4.4.4, JUCE 8.0.12. Локальная облачная машина не содержит Windows или FL Studio. Дополнительно выполнена удалённая Windows-сборка через GitHub Actions `windows-2022`: Visual Studio 2022, MSVC 19.44.35229.0, Windows SDK 10.0.26100.0.
 
 ## Результат
 
-Release VST3 для **Linux x86_64** собран. Это настоящий загружаемый VST3-модуль с аудиообработкой. Он не является Windows-бинарником.
+Release VST3 собран для **Windows x64** и **Linux x86_64**. Это отдельные бинарники; Linux-модуль не загружается в Windows.
+
+## Windows: подтверждённая сборка
+
+[Успешный запуск GitHub Actions](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40544160434), исходный commit `4dcb5e6a06b621f88095980ce2acadadccfc6e0c`. `build_windows.bat` завершился успешно; CTest — **2/2 passed**, DSPTests 4,80 с и PluginTests 0,05 с.
+
+[Архив Windows x64](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40544160434/artifacts/12752856135), размер ZIP 4 114 011 байт. Файл `MXND3X BABY VOICE.vst3/Contents/x86_64-win/MXND3X BABY VOICE.vst3` скачан и проверен: PE32+ Windows x86-64 DLL, присутствует экспорт `GetPluginFactory`, размер DLL 7 848 960 байт. SHA-256 этой сборки: `39009f64f064a40d1bac7454c8d1dd9fa136e9425b7425a14c5303947cdd54ee`.
+
+Проверка непосредственно в FL Studio пока не выполнялась.
+
+## Linux: подтверждённая сборка
 
 Полный `bash Scripts/setup_cloud.sh` выполнен успешно; повторный запуск использует подготовленные зависимости и проверенные выходы сборки. Итоговый CTest: **3/3 passed, 0 failed**. Установочные пакеты распакованы локально без изменения системных каталогов; проверка подписей APT и TLS не отключалась.
 
@@ -16,7 +26,7 @@ Release VST3 для **Linux x86_64** собран. Это настоящий з�
 | GUI: создание, размер, рендер и уничтожение редактора ×8 | Passed |
 | X11: открытие/закрытие нативных окон ×8, Xvfb + Openbox | Passed |
 | Обработка записи речи всеми шестью пресетами | Passed |
-| Windows/MSVC | Не выполнялась |
+| Windows/MSVC Release x64 | Passed, DSPTests + PluginTests: 2/2 |
 | FL Studio: сканирование, playback, автоматизация, сохранение проекта DAW | Не выполнялись |
 | Прослушивание и субъективная оценка на музыкальном вокале | Не выполнялись |
 
@@ -86,6 +96,6 @@ build-linux/PluginTests_artefacts/Release/PluginTests --gui
 build-linux/PluginTests_artefacts/Release/PluginTests --gui-desktop
 ```
 
-Команда Windows: `build_windows.bat`. Включён workflow GitHub Actions для Windows x64; он подготовлен, но в рамках этой задачи не запускался.
+Команда Windows: `build_windows.bat`. Workflow GitHub Actions для Windows x64 выполнен успешно; ссылки и подтверждённые результаты приведены выше.
 
 В конфигурации облачной среды сохранены `install_script` и `start_skill`. Публикация снимка и восстановление в новой задаче не проверялись; для активации пользователь должен сохранить изменения в настройках и опубликовать среду.

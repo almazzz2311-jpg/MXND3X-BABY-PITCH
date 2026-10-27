@@ -2,6 +2,10 @@
 
 Настоящий VST3-эффект для вокала: независимые **Pitch**, **Formant**, **Mix**, автоматизация, сохранение состояния, шесть пресетов и масштабируемый JUCE-интерфейс с персонажем MXND3X.
 
+## Готовый плагин для Windows
+
+[Скачать Windows x64 VST3](https://github.com/almazzz2311-jpg/MXND3X-BABY-PITCH/actions/runs/40544160434/artifacts/12752856135). Для скачивания артефакта требуется вход в GitHub. Распакуйте ZIP и установите целиком папку `MXND3X BABY VOICE.vst3` по инструкции ниже. Самостоятельная компиляция для установки этого архива не нужна.
+
 ## Windows 10/11 x64: сборка
 
 1. Установите **Visual Studio 2022** с компонентами **Desktop development with C++**, MSVC v143 и Windows 10/11 SDK.
@@ -17,7 +21,7 @@ cmake --build build-windows --config Release --parallel 2
 ctest --test-dir build-windows -C Release --output-on-failure
 ```
 
-Также добавлен GitHub Actions workflow `.github/workflows/windows.yml`. После загрузки проекта в GitHub он собирает Windows-пакет и предоставляет артефакт `MXND3X-BABY-VOICE-Windows-x64`. Здесь этот workflow не запускался.
+Также добавлен GitHub Actions workflow `.github/workflows/windows.yml`. После загрузки проекта в GitHub он собирает Windows-пакет и предоставляет артефакт `MXND3X-BABY-VOICE-Windows-x64`. Windows-сборка и оба Windows CTest-теста успешно выполнены; фактические результаты и ссылки на Actions находятся в `VALIDATION.md`.
 
 ## Установка в FL Studio
 
@@ -89,7 +93,7 @@ ctest --test-dir build-dsp --output-on-failure
 
 Фактически выполненные результаты находятся в [VALIDATION.md](VALIDATION.md). `DSPTests` проверяет частоту синуса, перемещение формантной огибающей синтетического голоса, dry/wet, bypass, произвольные блоки, изоляцию каналов, автоматизацию и heap allocations. Он сохраняет WAV до/после для прослушивания. `PluginTests` проверяет пресеты, состояние параметров, форматы каналов и обработку через JUCE AudioProcessor. Флаг `--gui` дополнительно проверяет редактор.
 
-Windows/MSVC, загрузка в FL Studio, автоматизация во время playback в реальной DAW и субъективная оценка на записанном вокале требуют отдельной проверки на целевой машине. Наличие успешной Linux-сборки не заменяет эти проверки.
+Windows Release x64 собран через Visual Studio 2022; DSPTests и PluginTests прошли на Windows. Загрузка в FL Studio, автоматизация во время playback в реальной DAW и субъективная оценка на музыкальном вокале остаются проверками целевой DAW. Успешная сборка и автоматические тесты не заменяют их.
 
 Для проверки собственной записи и экспорта WAV через процессор доступна команда:
 
